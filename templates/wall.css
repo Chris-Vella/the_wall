@@ -1,0 +1,32 @@
+.nav{
+    padding: 10px;
+    box-shadow: 0px 2px 0px black;
+    width: 100%;
+}
+.navitems{
+    display: inline-block;
+}
+#wrapper{
+    display: inline-block;
+    padding: 2.5%;
+    margin-bottom: 5px;
+}
+.messages button{
+    display: block;
+    float:right;
+}
+#messagebox{
+    width: 200%;
+    height: 8%;
+    resize: none;
+    display: block;
+}
+#messagepost{
+    display: block;
+}
+#commentbox{
+    resize: none;
+    display: block;
+    width: 350px;
+    margin-bottom: 5px;
+}

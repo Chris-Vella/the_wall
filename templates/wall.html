@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>CodingDojo Wall</title>
+        <link rel="stylesheet" type="text/css" href="wall.css">
+    </head>
+    <body>
+        <div class="nav">
+            <div class="navitems">
+                <h1 id="title">CodingDojo Wall</h1>
+                <p>Welcome {{ session['user_first_name']}}.</p>
+                <a href="/logout" action="/logout" method="GET">log out</a>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div id='flashes'>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flasherrors>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </div> 
+            <div>
+                <h3>Post a message:</h3>
+                <form action="/postmessage" method="POST" id="messages">
+                    <textarea from="messages" name="message" id="messagebox"></textarea>
+                    <input type="submit" id="messagepost" value="Post a message"></input>
+                </form>
+            </div>
+            <div id="posts">
+                <ul class="messages">
+                    {% for message in messages %}                    
+                    <li>{{ user.first_name }} {{ user.last_name }} - {{ message.date_created }}</li>
+                    <ul class="messagestext">
+                        <li id="messagebody">{{ messages.message }}</li>
+                        <ul class="commentsheader">
+                        {% for comment in user_comments %}                                    
+                            {% if comment.id == message.id %}
+                            <li>{{ user.first_name }} {{ user.last_name }} - {{ messages.datecreated }}</li>
+                            <ul class="commentstext">
+                                <li id="commentbody">{{ ec.comment }}</li>
+                            </ul>
+                            {% endif %}
+                        {% endfor %} 
+                        <form action="/postcomment" method="POST" id="comments">
+                            <h4><label for="comment">Post a comment</label></h4>
+                            <input type="hidden" name="messageid" value='{{ em.id }}'>
+                            <p><textarea from="comments" name="comment" id="commentbox"></textarea></p>
+                            <p><input type="submit" id="commentpost" value="Post a comment"></p>
+                        </form>
+                        </ul>
+                    </ul>
+                    {% endfor %}
+                </ul>  
+            </div>
+        </div>
+    </body>
+</html>
